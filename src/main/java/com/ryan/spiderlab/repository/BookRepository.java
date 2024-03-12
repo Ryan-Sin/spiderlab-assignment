@@ -26,17 +26,17 @@ public class BookRepository {
         this.bookJpaRepository.save(book);
     }
 
-    public Slice<Book> findBookBySlicePageNation(Member member, BookFilterType type, int page, int limit) {
+    public Slice<Book> findBookBySlicePageNation(BookFilterType type, int page, int limit) {
         switch (type) {
             case CREATED_AT:
                 Pageable createdAtPage = PageRequest.of(page, limit);
-                return this.bookJpaRepository.findBookByCreatedAtSlice(member, createdAtPage);
+                return this.bookJpaRepository.findBookByCreatedAtSlice(createdAtPage);
             case LOW_AMOUNT:
                 Pageable amountPage = PageRequest.of(page, limit);
-                return this.bookJpaRepository.findBookByLowAmountSlice(member, amountPage);
+                return this.bookJpaRepository.findBookByLowAmountSlice(amountPage);
             default:
                 Pageable highRentalPage = PageRequest.of(page, limit);
-                return this.bookJpaRepository.findBookByHighNumberOfRentalsSlice(member, highRentalPage);
+                return this.bookJpaRepository.findBookByHighNumberOfRentalsSlice(highRentalPage);
         }
     }
 }

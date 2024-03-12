@@ -29,9 +29,9 @@ public class BookService {
 
     public BookInfo.BookInfoList getBookLis(String email, BookCommand.GetBookListCommand getBookListCommand) {
         var memberEntity = this.memberRepository.findByEmail(email);
-        var member = this.memberValidator.assertMemberNotExist(memberEntity);
+        this.memberValidator.assertMemberNotExist(memberEntity);
 
-        var bookSliceList = this.bookRepository.findBookBySlicePageNation(member, getBookListCommand.getType(), getBookListCommand.getPage(), getBookListCommand.getLimit());
+        var bookSliceList = this.bookRepository.findBookBySlicePageNation(getBookListCommand.getType(), getBookListCommand.getPage(), getBookListCommand.getLimit());
         var bookInfoList = bookSliceList.stream()
                 .map((book) -> BookInfo.Main.builder()
                         .memberName(book.getMember().getName())
