@@ -4,15 +4,12 @@ import com.ryan.spiderlab.common.response.SuccessResponse;
 import com.ryan.spiderlab.controller.dto.BookDto;
 import com.ryan.spiderlab.controller.mapper.BookMapper;
 import com.ryan.spiderlab.service.BookService;
-import com.ryan.spiderlab.service.info.BookInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
