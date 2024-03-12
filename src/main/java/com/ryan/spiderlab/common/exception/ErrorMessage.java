@@ -12,4 +12,6 @@ public class ErrorMessage {
     public static final String REQUIRED_NAME = "성함은 필수입니다.";
     public final static String NOT_REGEXP_RESIDENT_ID_NUMBER_UNAUTHORIZED = "올바른 주민등록 번호 약식을 작성해주세요.";
     public static final String NOT_EXIST_UNAUTHORIZED = "유효한 인증 자격 증명이 없습니다.";
+    public static final String INCORRECT_FORMAT_PAGE = "올바른 페이지 값을 설정해주세요.";
+    public static final String INCORRECT_FORMAT_LIMIT = "올바른 최대 값을 설정해주세요.";
 }

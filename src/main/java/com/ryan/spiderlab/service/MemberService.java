@@ -17,7 +17,7 @@ public class MemberService {
 
     public boolean onSignUp(MemberCommand.SignUpCommand signUpCommand) {
         var memberEntity = this.memberRepository.findByEmail(signUpCommand.getEmail());
-        memberValidator.assertMemberExist(memberEntity);
+        this.memberValidator.assertMemberExist(memberEntity);
         this.memberRepository.save(
                 signUpCommand.getEmail(),
                 signUpCommand.getPassword(),
@@ -29,7 +29,7 @@ public class MemberService {
 
     public String onSignIn(MemberCommand.SignInCommand signInCommand) {
         var memberEntity = this.memberRepository.findByEmail(signInCommand.getEmail());
-        var member = memberValidator.assertMemberNotExist(memberEntity);
+        var member = this.memberValidator.assertMemberNotExist(memberEntity);
         this.memberValidator.assertPasswordMissMatches(signInCommand.getPassword(), member.getPassword());
         return this.tokenProvider.createToken(String.format("%s:%s", member.getEmail(), member.getName()));
     }
