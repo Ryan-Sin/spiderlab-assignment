@@ -43,8 +43,6 @@ public class BookService {
                 )
                 .collect(Collectors.toList());
 
-        System.out.println("bookInfoList = " + bookInfoList);
-
         return BookInfo.BookInfoList.builder()
                 .isNext(bookSliceList.hasNext())
                 .bookList(bookInfoList)
