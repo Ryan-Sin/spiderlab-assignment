@@ -1,6 +1,7 @@
 package com.ryan.spiderlab.service;
 
 import com.ryan.spiderlab.common.enums.BookStatus;
+import com.ryan.spiderlab.domain.Book;
 import com.ryan.spiderlab.repository.BookRepository;
 import com.ryan.spiderlab.repository.MemberRepository;
 import com.ryan.spiderlab.service.command.BookCommand;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -69,5 +71,14 @@ public class BookService {
                 .forEach(book -> this.bookRepository.rentMemberBook(member, book));
 
         return true;
+    }
+
+    public List<Book> getRentBookList() {
+        List<Book> allByRentStatus = this.bookRepository.findAllByRentStatus();
+        return allByRentStatus;
+    }
+
+    public void bulkCheckInBook(List<Book> bookList) {
+        this.bookRepository.bulkCheckInBook(bookList);
     }
 }

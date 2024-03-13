@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -54,5 +55,13 @@ public class BookRepository {
 
     public Optional<Book> findByUniqueNumber(String uniqueNumber) {
         return this.bookJpaRepository.findByUniqueNumber(uniqueNumber);
+    }
+
+    public List<Book> findAllByRentStatus() {
+        return this.bookJpaRepository.findAllByStatus(BookStatus.RENT);
+    }
+
+    public void bulkCheckInBook(List<Book> bookList) {
+        this.bookJpaRepository.saveAll(bookList);
     }
 }

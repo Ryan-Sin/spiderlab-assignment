@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum BookStatus {
     AVAILABLE("대출가능"),
-    LENT("대출하다");
+    RENT("대출하다");
     private final String status;
 
 }

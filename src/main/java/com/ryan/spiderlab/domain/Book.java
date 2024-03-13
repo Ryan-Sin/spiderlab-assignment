@@ -41,12 +41,13 @@ public class Book {
     }
 
     public void checkIn() {
+        System.out.println(11);
         this.status = BookStatus.AVAILABLE;
     }
 
     public void checkOut(Member member) {
         this.member = member;
-        this.status = BookStatus.LENT;
+        this.status = BookStatus.RENT;
         this.numberOfRentals += 1;
     }
 }
