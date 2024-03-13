@@ -5,6 +5,9 @@ import com.ryan.spiderlab.service.command.BookCommand;
 import com.ryan.spiderlab.service.info.BookInfo;
 import org.mapstruct.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Mapper(
         componentModel = "spring",
         injectionStrategy = InjectionStrategy.CONSTRUCTOR,
@@ -13,10 +16,14 @@ import org.mapstruct.*;
 public interface BookMapper {
     BookCommand.ConsignmentCommand of(BookDto.ConsignmentRequest consignmentRequest);
     BookCommand.GetBookListCommand of(BookDto.GetBookListRequest getBookListRequest);
-
     @Mappings({
             @Mapping(source = "isNext", target = "isNext"),
             @Mapping(source = "bookList", target = "bookList"),
     })
     BookDto.GetBookListResponse of(BookInfo.BookInfoList bookInfoList);
+
+    @Mappings({
+            @Mapping(source = "rentBookDataList", target = "rentCommandDataList"),
+    })
+    BookCommand.RentCommand of(BookDto.RentBookRequest rentBookRequest);
 }

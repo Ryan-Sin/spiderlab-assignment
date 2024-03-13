@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 public class BookRepository {
@@ -22,11 +24,12 @@ public class BookRepository {
                 .uniqueNumber(uniqueNumber)
                 .amount(amount)
                 .status(BookStatus.AVAILABLE)
+                .numberOfRentals(0)
                 .build();
         this.bookJpaRepository.save(book);
     }
 
-    public Slice<Book> findBookBySlicePageNation(BookFilterType type, int page, int limit) {
+    public Slice<Book> findBySlicePageNation(BookFilterType type, int page, int limit) {
         switch (type) {
             case CREATED_AT:
                 Pageable createdAtPage = PageRequest.of(page, limit);
@@ -38,5 +41,18 @@ public class BookRepository {
                 Pageable highRentalPage = PageRequest.of(page, limit);
                 return this.bookJpaRepository.findBookByHighNumberOfRentalsSlice(highRentalPage);
         }
+    }
+
+    public Optional<Book> findByUniqueNumberAndStatus(String uniqueNumber, BookStatus status) {
+       return this.bookJpaRepository.findByUniqueNumberAndStatus(uniqueNumber, status);
+    }
+
+    public void rentMemberBook(Member member, Book book) {
+        book.checkOut(member);
+        this.bookJpaRepository.save(book);
+    }
+
+    public Optional<Book> findByUniqueNumber(String uniqueNumber) {
+        return this.bookJpaRepository.findByUniqueNumber(uniqueNumber);
     }
 }

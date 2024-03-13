@@ -42,4 +42,16 @@ public class BookController {
         var data = this.bookMapper.of(bookInfoList);
         return SuccessResponse.setSuccessResponse(data);
     }
+
+    @PostMapping("/rent")
+    @Operation(summary = "도서 대여하기", description = "고객이 선택한 도서를 대여합니다.")
+    public SuccessResponse rentBook(
+            @AuthenticationPrincipal User user,
+            @RequestBody BookDto.RentBookRequest request
+    ){
+        var email = user.getUsername();
+        var rentCommand = this.bookMapper.of(request);
+        var data = this.bookService.rentBook(email, rentCommand);
+        return SuccessResponse.setSuccessResponse(data);
+    }
 }

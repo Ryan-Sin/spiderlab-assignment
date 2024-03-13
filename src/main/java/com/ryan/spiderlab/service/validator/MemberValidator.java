@@ -16,8 +16,8 @@ import java.util.Optional;
 public class MemberValidator {
     private final PasswordEncoder passwordEncoder;
 
-    public void assertMemberExist(Optional<Member> user) {
-        user.ifPresent(d -> {
+    public void assertMemberExist(Optional<Member> member) {
+        member.ifPresent(d -> {
             throw CommonException.builder()
                     .errorType(ErrorType.DEVELOPER)
                     .status(StatusCode.FAIL.getStatusCode())

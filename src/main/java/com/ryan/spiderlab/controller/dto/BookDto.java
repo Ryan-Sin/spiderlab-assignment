@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class BookDto {
     @Schema(title = "도서 위탁 요청 정보")
     public static class ConsignmentRequest {
         @Schema(description = "도서명", example = "세이노의 가르침")
-        public String name;
+        private String name;
 
         @Schema(description = "ISBN", example = "9791168473690")
         private String uniqueNumber;
@@ -32,13 +33,13 @@ public class BookDto {
     @Builder
     @ToString
     public static class GetBookListRequest {
-        public BookFilterType type;
+        private BookFilterType type;
 
         @Min(value = 0, message = ErrorMessage.INCORRECT_FORMAT_PAGE)
-        public int page;
+        private int page;
 
         @Min(value = 0, message = ErrorMessage.INCORRECT_FORMAT_LIMIT)
-        public int limit;
+        private int limit;
     }
 
     @Getter
@@ -58,5 +59,20 @@ public class BookDto {
         private int amount;
         private String uniqueNumber;
         private BookStatus status;
+    }
+
+    @Getter
+    @ToString
+    @NoArgsConstructor
+    public static class RentBookRequest {
+        public List<RentBookData> rentBookDataList;
+    }
+
+    @Getter
+    @ToString
+    @NoArgsConstructor
+    public static class RentBookData {
+        public String uniqueNumber;
+        public int amount;
     }
 }

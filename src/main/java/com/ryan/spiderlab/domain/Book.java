@@ -41,11 +41,12 @@ public class Book {
     }
 
     public void checkIn() {
-        this.status = BookStatus.LOAN;
-        this.numberOfRentals += 1;
+        this.status = BookStatus.AVAILABLE;
     }
 
-    public void checkOut() {
-        this.status = BookStatus.AVAILABLE;
+    public void checkOut(Member member) {
+        this.member = member;
+        this.status = BookStatus.LENT;
+        this.numberOfRentals += 1;
     }
 }
