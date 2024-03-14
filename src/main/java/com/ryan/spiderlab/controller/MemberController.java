@@ -23,8 +23,8 @@ public class MemberController {
     @Operation(summary = "회원가입", description = "신규 유저 회원가입 기능을 제공합니다.")
     public SuccessResponse onSignUp(@RequestBody @Valid MemberDto.SignUpRequest request) {
         var memberCommand = this.memberDtoMapper.of(request);
-        var result = this.memberService.onSignUp(memberCommand);
-        return SuccessResponse.setSuccessResponse(result);
+        var data = this.memberService.onSignUp(memberCommand);
+        return SuccessResponse.setSuccessResponse(data);
     }
 
     @PostMapping("/sign-in")
@@ -32,8 +32,8 @@ public class MemberController {
     public SuccessResponse onSignIn(@RequestBody @Valid MemberDto.SignInRequest request) {
         var memberCommand = this.memberDtoMapper.of(request);
         var token = this.memberService.onSignIn(memberCommand);
-        var response = this.memberDtoMapper.of(token);
-        return SuccessResponse.setSuccessResponse(response);
+        var data = this.memberDtoMapper.of(token);
+        return SuccessResponse.setSuccessResponse(data);
     }
 
 }

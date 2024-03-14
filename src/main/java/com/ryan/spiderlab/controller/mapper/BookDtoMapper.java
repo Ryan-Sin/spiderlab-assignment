@@ -5,15 +5,12 @@ import com.ryan.spiderlab.service.command.BookCommand;
 import com.ryan.spiderlab.service.info.BookInfo;
 import org.mapstruct.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Mapper(
         componentModel = "spring",
         injectionStrategy = InjectionStrategy.CONSTRUCTOR,
         unmappedTargetPolicy = ReportingPolicy.ERROR
 )
-public interface BookMapper {
+public interface BookDtoMapper {
     BookCommand.ConsignmentCommand of(BookDto.ConsignmentRequest consignmentRequest);
     BookCommand.GetBookListCommand of(BookDto.GetBookListRequest getBookListRequest);
     @Mappings({

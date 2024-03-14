@@ -35,7 +35,7 @@ public class BookDto {
     @ToString
     @Schema(title = "등록된 위타 도서 조회하기")
     public static class GetBookListRequest {
-        @Schema(description = "조회 조건", example = "Ex- HIGH_NUMBER_OF_RENTALS: 대여 많은순, LOW_AMOUNT: 가격 낮은 순, CREATED_AT: 최근 등고순")
+        @Schema(description = "조회 조건 Ex- HIGH_NUMBER_OF_RENTALS: 대여 많은순, LOW_AMOUNT: 가격 낮은 순, CREATED_AT: 최근 등고순", example = "HIGH_NUMBER_OF_RENTALS")
         private BookFilterType type;
 
         @Min(value = 0, message = ErrorMessage.INCORRECT_FORMAT_PAGE)

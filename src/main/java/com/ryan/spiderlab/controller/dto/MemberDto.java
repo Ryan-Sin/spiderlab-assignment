@@ -22,13 +22,13 @@ public class MemberDto {
         @Schema(description = "유저 아이디", example = "ryan@gmail.com")
         @Email
         @NotBlank(message = ErrorMessage.REQUIRED_VALUE_EMAIL)
-        public String email;
+        private String email;
 
         @Schema(description = "유저 비밀번호 정규식(비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 16자)", example = "1234qweR!!")
         @NotBlank(message = ErrorMessage.REQUIRED_VALUE_PASSWORD)
         @Size(min = Constant.MIN_SIZE_PASSWORD, max = Constant.MAX_SIZE_PASSWORD, message = ErrorMessage.NOT_PASSWORD_SIZE)
         @Pattern(regexp = Constant.REGEXP_PASSWORD, message = ErrorMessage.NOT_EXIST_PASSWORD_UNAUTHORIZED)
-        public String password;
+        private String password;
 
         @Schema(description = "유저 이름", example = "홍길동")
         @NotBlank(message = ErrorMessage.REQUIRED_NAME)
@@ -46,13 +46,13 @@ public class MemberDto {
     public static class SignInRequest {
         @Schema(description = "유저 이메일", example = "ryan@gmail.com")
         @NotBlank(message = ErrorMessage.REQUIRED_VALUE_EMAIL)
-        public String email;
+        private String email;
 
         @Schema(description = "유저 비밀번호 정규식(비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 16자)", example = "1234qweR!!")
         @NotBlank(message = ErrorMessage.REQUIRED_VALUE_PASSWORD)
         @Size(min = Constant.MIN_SIZE_PASSWORD, max = Constant.MAX_SIZE_PASSWORD, message = ErrorMessage.NOT_PASSWORD_SIZE)
         @Pattern(regexp = Constant.REGEXP_PASSWORD, message = ErrorMessage.NOT_EXIST_PASSWORD_UNAUTHORIZED)
-        public String password;
+        private String password;
     }
 
     @Getter
