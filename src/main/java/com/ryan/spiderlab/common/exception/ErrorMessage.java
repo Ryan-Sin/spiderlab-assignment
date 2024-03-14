@@ -16,4 +16,5 @@ public class ErrorMessage {
     public static final String INCORRECT_FORMAT_LIMIT = "올바른 최대 값을 설정해주세요.";
     public static final String NOT_AVAILABLE_RENT_BOOK = "도서 대출이 불가능 합니다.";
     public static final String EXIST_UNIQUE_BOOK = "등록 된 ISBN가 존재합니다.";
+    public static final String REQUIRED_VALUE_UNIQUE = "ISBN 값은 필수 입니다.";
 }
